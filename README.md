@@ -26,6 +26,17 @@ In local development, I expose a temporary public callback URL using cloud dev e
 
 - Internal reverse proxy tools 
 
+## Best Practice: 
+- never hardcode credentials. When we set from environment variable we need to give placeholder like below
+- Spring Boot, please take the value of the environment variable named TWILIO_ACCOUNT_SID and inject it here.
+- So instead of writing your secret values manually inside the YAML file, you simply reference the environment variable.
+
+```declarative
+twilio.accountSid=${TWILIO_ACCOUNT_SID}
+twilio.authToken=${TWILIO_AUTH_TOKEN}
+twilio.phoneNumber=${TWILIO_PHONE_NUMBER}
+```
+
 
 # YOUTUBE LINK FOR NGROK -
 
