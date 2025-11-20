@@ -36,9 +36,22 @@ twilio.accountSid=${TWILIO_ACCOUNT_SID}
 twilio.authToken=${TWILIO_AUTH_TOKEN}
 twilio.phoneNumber=${TWILIO_PHONE_NUMBER}
 ```
+# How to improve performance and use best practices
 
+[ChatGpt Chat Reference](https://chatgpt.com/share/691e830d-4f34-8000-a69f-a64532e90460)
 
 # YOUTUBE LINK FOR NGROK -
 
 - [YouTube video for reference](https://youtu.be/EIkn-hEbhPM?si=k9PJmrzErx3LPzJ) 
 - [YouTube video for reference](https://youtu.be/aFwrNSfthxU?si=rXRIy3E-P0VFtMO2) 
+
+
+# ⭐ Final, Short Interview-Ready Answer
+**“To process 2 lakh SMS/day, I will never send SMS directly from the REST API.
+
+Instead, I push SMS events to Kafka and use multiple consumers to send SMS in parallel.
+Kafka gives horizontal scalability, and using 10 partitions with 5–10 consumers easily handles lakhs of messages per day.
+
+Failures are handled per message. I wrap the SMS call in a try-catch so failure for one user does not stop processing for others.
+Failed messages go to a retry topic or a failed-queue table. A scheduled job reprocesses failed SMS every few minutes.
+This ensures high throughput and guarantees all SMS are delivered the same day.”**
